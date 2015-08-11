@@ -5,8 +5,8 @@
 ## makeCacheCapital takes one numeric input and returns a list of functions
 ## essentially creating a special character that can cache its uppercase
 makeCacheCapital <- function(x = character()) {
-    ## set  c to null (creates c as a local varible in the enviroment else the 
-    ## child functions would keep searching beyond this enviroment)
+    ## set  c to null (creates c as a local varible in the environment else the 
+    ## child functions would keep searching beyond this environment)
     c <- NULL
     
     ##create function setchar taking y as an input
@@ -14,9 +14,9 @@ makeCacheCapital <- function(x = character()) {
         ## because this fuction is writing to its parent we are going to have a function
         ## closure so the parent enviroment is going ot maintain the values of c and x
         
-        ##set x to y in the parent enviroment/closure
+        ##set x to y in the parent environment/closure
         x <<- y
-        ## set c to null in the parent enviroment/closure
+        ## set c to null in the parent environment/closure
         c <<- NULL
     }
     
@@ -27,7 +27,7 @@ makeCacheCapital <- function(x = character()) {
     }
     
     ## create function setcapital that takes capital as an input
-    ## and set c to capital in the parent enviroment
+    ## and set c to capital in the parent environment
     setcapital <- function(capital)
     {
         c <<- capital
@@ -64,7 +64,7 @@ cacheCapital <- function(x) {
         return(c)
     }
     
-    ## set data to the 
+    ## set data to the result of the getc function
     data <- x$getc()
     
     ##run toupper on  data and assing output to c 
