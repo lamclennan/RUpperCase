@@ -5,13 +5,15 @@
 ## makeCacheCapital takes one numeric input and returns a list of functions
 ## essentially creating a special character that can cache its uppercase
 makeCacheCapital <- function(x = character()) {
-    ##set  c to null
+    ## set  c to null (creates c as a local varible in the enviroment else the 
+    ## child functions would keep searching beyond this enviroment)
     c <- NULL
     
     ##create function setchar taking y as an input
     setchar <- function(y) {
         ## because this fuction is writing to its parent we are going to have a function
         ## closure so the parent enviroment is going ot maintain the values of c and x
+        
         ##set x to y in the parent enviroment/closure
         x <<- y
         ## set c to null in the parent enviroment/closure
@@ -24,18 +26,24 @@ makeCacheCapital <- function(x = character()) {
         x
     }
     
-    ## create function setcapital that takes inverse as an input
-    ## and set c to inverse in the parent enviroment
+    ## create function setcapital that takes capital as an input
+    ## and set c to capital in the parent enviroment
     setcapital <- function(capital)
     {
         c <<- capital
     }
-    ## create function getinverse that returns i
+    ## create function getcapital that returns c
     getcapital <- function()
     {
         c
     }
     ## return a named list of our fuctions
+    ## I changed the names in the list here just to demonstrate you could do this
+    ## Because we are returning these functions that are reading varibles in makeCacheCapital
+    ## we will end up with a function closure and the values of x and c will be maintained.
+    ## everytime this is assigned a new enviroment is created with the object it is assigned
+    ## see https://darrenjw.wordpress.com/2011/11/23/lexical-scope-and-function-closures-in-r/
+    ## specifically "Function Closures"
     list(setc = setchar, getc = getchar,
          setcap = setcapital,
          getcap = getcapital)
